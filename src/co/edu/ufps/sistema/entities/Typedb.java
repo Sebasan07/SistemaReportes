@@ -2,15 +2,16 @@ package co.edu.ufps.sistema.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The persistent class for the typedb database table.
  * 
  */
 @Entity
-@NamedQuery(name="Typedb.findAll", query="SELECT t FROM Typedb t")
+@NamedQuery(name = "Typedb.findAll", query = "SELECT t FROM Typedb t")
 public class Typedb implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,11 +24,20 @@ public class Typedb implements Serializable {
 
 	private String driver;
 
-	//bi-directional many-to-one association to Connectiontoken
-	@OneToMany(mappedBy="typedb")
+	// bi-directional many-to-one association to Connectiontoken
+	@OneToMany(mappedBy = "typedb")
 	private List<Connectiontoken> connectiontokens;
 
 	public Typedb() {
+
+	}
+
+	public Typedb(String aditional, String description, String driver) {
+		super();
+		this.aditional = aditional;
+		this.description = description;
+		this.driver = driver;
+		connectiontokens = new ArrayList<>();
 	}
 
 	public String getId() {

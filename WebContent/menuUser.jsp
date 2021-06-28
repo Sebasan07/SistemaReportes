@@ -14,11 +14,11 @@
 
 
 	<ul class="list-unstyled menu-elements">
-		<li><a href="<%=request.getContextPath()%>/Admin">Inicio</a>
+		<li><a href="<%=request.getContextPath()%>/Usuario">Inicio</a>
 		</li>
-		<li><a href="<%=request.getContextPath()%>/Admin/registroBD">Registrar BD</a>
+		<li><a href="<%=request.getContextPath()%>/Usuario/reportes">Reportes y tokens</a>
 		</li>
-		<li><a href="<%=request.getContextPath()%>/Usuario/Logout">Cerrar
+		<li><a href="<%=request.getContextPath()%>/Logout">Cerrar
 				sesion</a></li>
 	</ul>
 

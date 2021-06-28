@@ -10,8 +10,9 @@ import java.util.List;
  * The persistent class for the reporte database table.
  * 
  */
-@Entity
-@NamedQuery(name="Reporte.findAll", query="SELECT r FROM Reporte r")
+@Entity(name="reporte")
+@NamedQueries({@NamedQuery(name="Reporte.findAll", query="SELECT r FROM reporte r")})
+
 public class Reporte implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -117,6 +118,12 @@ public class Reporte implements Serializable {
 		seguimiento.setReporte(null);
 
 		return seguimiento;
+	}
+
+	@Override
+	public String toString() {
+		return "Reporte [id=" + id + ", datecreate=" + datecreate + ", description=" + description + ", file=" + file
+				+ ", name=" + name + ", state=" + state + "]";
 	}
 
 }

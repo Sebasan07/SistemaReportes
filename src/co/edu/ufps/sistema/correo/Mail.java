@@ -28,7 +28,7 @@ import java.util.Date;
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("huelleritosfundacion@gmail.com", "Huelleritos3259");
+                return new PasswordAuthentication("anontepotr@gmail.com", "anontepotr12345");
             }
         };
  
@@ -38,7 +38,7 @@ import java.util.Date;
         Message msg = new MimeMessage(session);
  
       try {
-    	  msg.setFrom(new InternetAddress("huelleritosfundacion@gmail.com"));
+    	  msg.setFrom(new InternetAddress("anontepotr@gmail.com"));
           InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
           msg.setRecipients(Message.RecipientType.TO, toAddresses);
           msg.setSubject(asunto);
