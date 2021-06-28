@@ -50,7 +50,7 @@ public class UsuarioController extends HttpServlet {
 			break;
 		case "/reportes":
 			Integer id=((Usuario)request.getSession().getAttribute("usuario")).getId();
-			request.setAttribute("reportes", reDAO.listReportes(id+"");
+			request.setAttribute("reportes", reDAO.listReportes(id+""));
 			request.getRequestDispatcher("reportes.jsp").forward(request, response);
 			break;
 		case "/registro/procesar":
