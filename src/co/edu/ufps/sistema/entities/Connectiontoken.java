@@ -49,6 +49,19 @@ public class Connectiontoken implements Serializable {
 	public Connectiontoken() {
 	}
 
+	public Connectiontoken(String db, String host, String pass, short port, short state, String token, String userdb,
+			Typedb typedb) {
+		super();
+		this.db = db;
+		this.host = host;
+		this.pass = pass;
+		this.port = port;
+		this.state = state;
+		this.token = token;
+		this.userdb = userdb;
+		this.typedb = typedb;
+	}
+
 	public int getId() {
 		return this.id;
 	}

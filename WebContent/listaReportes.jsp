@@ -71,7 +71,9 @@
 						<input type="text" align="right" class="form-control pull-right" style="width:30%" id="search" placeholder="Buscar:">
 
 					</div>
+				<%List<Reporte> reportes = (List)request.getAttribute("reportes");
 				
+				%>
 					<div class="col-xs-12 col-md-3">
  
 </div>
@@ -79,28 +81,27 @@
 					<table class="table table-bordered" id="mytable">
 						<thead class="table-dark">
 							<tr role="row">
-								<th scope="col">CODIGO</th>
-								<th scope="col">NOMBRE</th>
-								<th scope="col">TIPO</th>
-								<th scope="col">EDAD</th>
-								<th scope="col">ESTADO</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Descripción</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">File</th>
 
-								<th scope="col" colspan="2">ACCIONES</th>
+								<th scope="col" colspan="2">Acciones</th>
 							</tr>
 						</thead>
 						<tbody >
 					
+					<%for(Reporte r:reportes){ %>
+							 <tr>
+								<th scope="row"><%=r.getName() %></th>
+								<td><%=r.getDescription() %></td>
+								<td><%=r.getDatecreate()%></td>
+								<td><%=r.getFile()%></td>
+								<td><button type="button" onclick="location.href='tokens?reporte=<%=r.getId() %>'" class="btn btn-dark">Ver Tokens</button></td>
+								<td><button type="button" onclick="location.href='seguimientos?reporte=<%=r.getId() %>'" class="btn btn-dark">Ver Seguimientos</button></td>
 					
-							<%-- <tr>
-								<th scope="row"><%=animal.getCodigoAnimal() %></th>
-								<td><%=animal.getNombreAnimal() %></td>
-								<td><%=animal.getTipoAnimal().getDescripcion()%></td>
-								<td><%=animal.getEdad() %></td>
-								<td><%=animal.getEstadoAnimalBean().getDescripcion() %></td>
-								<td><button type="button" onclick="location.href='editar?animal=<%=animal.getCodigoAnimal() %>'" class="btn btn-dark">Editar</button></td>
-								<td><button type="button" onclick="location.href='eliminar?animal=<%=animal.getCodigoAnimal() %>'" class="btn btn-dark">Eliminar</button></td>
-							</tr> --%>
-							
+							</tr> 
+					<%} %>
 						</tbody>
 					</table>
 				</div>
