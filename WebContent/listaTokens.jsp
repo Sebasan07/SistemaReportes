@@ -1,5 +1,4 @@
 <%@page import="co.edu.ufps.sistema.entities.*"%>
-<%@page import="co.edu.ufps.sistema.dao.*"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -9,10 +8,10 @@
     <head>
 
 		<!-- Required meta tags -->
-        <meta charset="utf-8">
+        <meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-        <title>Inicio Usuario</title>
+        <title>Lista de Solicitudes</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap">
@@ -24,7 +23,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/media-queries.css">
 
         <!-- Favicon and touch icons -->
- <link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/img/logocontacto.png">
+  <link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/img/logocontacto.png">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=request.getContextPath()%>/assets/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=request.getContextPath()%>/assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=request.getContextPath()%>/assets/ico/apple-touch-icon-72-precomposed.png">
@@ -47,7 +46,7 @@
     	<div class="wrapper">
 
 			<!-- Sidebar -->
-			<jsp:include page="menuUser.jsp" />
+			<jsp:include page="menuAdmin.jsp" />
 			<!-- End sidebar -->
 			
 			<!-- Dark overlay -->
@@ -60,40 +59,53 @@
 					<a class="btn btn-primary btn-customized open-menu" href="#" role="button">
 	                    <i class="fas fa-align-left"></i> <span>Menu</span>
 	                </a>
+				<div class="container">
+					<div class="col-md-4 m-2">
+						<h1>Lista</h1>
+						<a href="agregar" type="button" class="btn btn-dark">Agregar</a>
+												
+					</div>
+					<div class="col-md-5 m-2 input-group">
+						
+						<label >Buscar:</label>
+						<input type="text" align="right" class="form-control pull-right" style="width:30%" id="search" placeholder="Buscar:">
+
+					</div>
+				<%Connectiontoken token = (Connectiontoken)request.getAttribute("tokens");
 				
-			        	      <% 
-String mensaje=request.getParameter("mensaje");
-            if(mensaje!=null) 
-            { 
-            	%>          
-                <p style="text-align: center;color:red"><%=mensaje %></p>
-        <%
-            }
-%>
-	
-	<h1>Inicio Usuario</h1>
-	
-	
-	<%
-	Integer id = ((Usuario)request.getSession().getAttribute("usuario")).getId();
-	List<Reporte> reportes =new ReporteDAO().listReportes(id+"");
-	List<Connectiontoken> tokens =new ConnectiontokenDAO().listTokens(id+"");%>
-	
-	<div class="row">
-					<div class="col-lg-3 col-xs-6">
-						<div class="rad-info-box rad-txt-success">
-							<span class="heading">Reportes</span>
-							<span class="value"><span><%=reportes.size() %></span></span>
-						</div>
-					</div>
-					<div class="col-lg-3 col-xs-6">
-						<div class="rad-info-box rad-txt-primary">
-							<span class="heading">Tokens</span>
-							<span class="value"><span><%=tokens.size() %></span></span>
-						</div>
-					</div>
-			
+				%>
+					<div class="col-xs-12 col-md-3">
+ 
+</div>
+					<div class="row justify-content-center justify-content-md-start">
+					<table class="table table-bordered" id="mytable">
+						<thead class="table-dark">
+							<tr role="row">
+								<th scope="col">Nombre</th>
+								<th scope="col">Descripción</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">File</th>
+
+								<th scope="col" colspan="2">Acciones</th>
+							</tr>
+						</thead>
+						<tbody >
+					
+					
+							 <tr>
+								<th scope="row"><%=token.getToken() %></th>
+								<td><%=token.getDb() %></td>
+								<td><%=token.getHost()%></td>
+								<td><%=token.getState()%></td>
+								<td><button type="button" onclick="location.href='reportes'" class="btn btn-dark">Ver Reportes</button></td>
+								
+							</tr> 
+
+						</tbody>
+					</table>
 				</div>
+				</div>
+			        	
 			        <!-- Footer -->
 			        <footer class="footer-container">
 			
@@ -116,6 +128,7 @@ String mensaje=request.getParameter("mensaje");
         <!-- End wrapper -->
 
         <!-- Javascript -->
+       
 		<script src="<%=request.getContextPath()%>/assets/js/jquery-3.3.1.min.js"></script>
 		<script src="<%=request.getContextPath()%>/assets/js/jquery-migrate-3.0.0.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -125,7 +138,23 @@ String mensaje=request.getParameter("mensaje");
         <script src="<%=request.getContextPath()%>/assets/js/jquery.waypoints.min.js"></script>
         <script src="<%=request.getContextPath()%>/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="<%=request.getContextPath()%>/assets/js/scripts.js"></script>
-
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      
+	<script>
+ // Write on keyup event of keyword input element
+ $(document).ready(function(){
+ $("#search").keyup(function(){
+ _this = this;
+ // Show only matching TR, hide rest of them
+ $.each($("#mytable tbody tr"), function() {
+ if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+ $(this).hide();
+ else
+ $(this).show();
+ });
+ });
+});
+</script>
     </body>
 
 </html>

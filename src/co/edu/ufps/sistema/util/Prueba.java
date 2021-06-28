@@ -7,12 +7,11 @@ import co.edu.ufps.sistema.entities.Reporte;
 
 public class Prueba {
 	public static void main(String[] args) {
-		List<Reporte> r=new ReporteDAO().listReportes(1+"");
-		
 		/*
-		 * System.out.println(r.get(0)[0].toString()); Reporte ssr= new
-		 * ReporteDAO().find(Integer.parseInt(r.get(0)[0].toString()));
+		 * List<Object[]> r=new ReporteDAO().listReportes(1+""); for(Object[] s:r) {
+		 * System.out.println(s[0].toString()); Reporte rr=new
+		 * ReporteDAO().find(Integer.parseInt(s[0].toString())); System.out.println(rr);
+		 * }
 		 */
-
 	}
 }
